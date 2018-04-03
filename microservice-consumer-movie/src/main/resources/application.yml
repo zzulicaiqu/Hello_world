@@ -1,0 +1,15 @@
+spring:
+  application:      #应用的名称
+    name: microservice-consumer-movie-0.0.1-SNAPSHOT
+server:                #设置服务的端口号
+  port: 7700
+user:                    #消费者的路径《自定义》
+  consumerPath: http://localhost:7800/simple/
+eureka:               #erueka 注册中心的健康检查、erueka的路径已经登录的安全检查（security）
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true   #显示status的ip
