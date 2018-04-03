@@ -27,6 +27,6 @@ public class UserController {
 	
 	@GetMapping("/movie/{id}")
 	public User getMovie(@PathVariable Long id){
-		return this.restTemplate.getForObject(this.consumerPath + id, User.class);
+		return this.restTemplate.getForObject("http://microservice-provider-user/simple/" + id, User.class);
 	}
 }
