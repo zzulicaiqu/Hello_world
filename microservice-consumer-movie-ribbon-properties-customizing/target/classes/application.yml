@@ -13,4 +13,10 @@ eureka:
     prefer-ip-address: true
 microservice-provider-user2:
   ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #配置文件优先级高于注解 设置客户端负载均衡轮询
+# 解决第一次请求报超时异常的方案：
+# hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
+# 或者：
+# hystrix.command.default.execution.timeout.enabled: false
+# 或者：
+feign.hystrix.enabled: false ## 索性禁用feign的hystrix支持
