@@ -1,4 +1,4 @@
-package com.zzuli.cloud.entiry;
+package com.zzuli.cloud.entity;
 
 import java.math.BigDecimal;
 

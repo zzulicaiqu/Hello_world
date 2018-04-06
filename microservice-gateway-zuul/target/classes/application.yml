@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: microservice-gateway-zuul
+security:
+  basic:
+    enabled: true   #添加eureka的登录认证
+  user:
+    name: user
+    password: password123
+server:
+  port: 8740
+eureka:
+  client:
+   register-with-eureka: true
+   fetch-registry: true
+   service-url:
+      defaultZone: http://user:password123@localhost:8761/eureka  #此种形式的认证为linux的系统下的curl Style 认证方式
+  instance:
+    prefer-ip-address: true   #显示status的ip
+    status-page-url: http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号  / 开启swagger2
+zuul:
+  routes:
+    abc:  #此项为任意配置
+      path: /user/**
+      service-id: microservice-provider-user
+      
+ribbon:
+    eureka:
+     enabled: false
+     
+microservice-provider-user:     # 这边是ribbon要请求的微服务的serviceId
+  ribbon:
+    listOfServers: http://localhost:7800,http://localhost:7801

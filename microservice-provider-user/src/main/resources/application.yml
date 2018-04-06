@@ -1,5 +1,5 @@
 server:
-  port: 7800
+  port: 7801
 spring:
   jpa:
     generate-ddl: false
@@ -27,3 +27,4 @@ eureka:
       defaultZone: http://user:password123@localhost:8761/eureka
   instance:
     prefer-ip-address: true   #显示status的ip
+    status-page-url: http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号  / 开启swagger2
