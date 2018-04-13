@@ -18,15 +18,29 @@ eureka:
   instance:
     prefer-ip-address: true   #显示status的ip
     status-page-url: http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号  / 开启swagger2
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000
 zuul:
+  host:
+    socket-timeout-millis: 60000  
+    connect-timeout-millis: 60000
   routes:
-    abc:  #此项为任意配置
+    bcd:
       path: /user/**
       service-id: microservice-provider-user
-      
+
+hystrix:  
+  command:  
+    default:  
+      execution:  
+        isolation:  
+          thread:  
+            timeoutInMilliseconds: 60000  
+            
 ribbon:
-    eureka:
-     enabled: false
+   ReadTimeout: 60000  
+   ConnectTimeout: 60000 
+   eureka:
+    enabled: false
      
 microservice-provider-user:     # 这边是ribbon要请求的微服务的serviceId
   ribbon:

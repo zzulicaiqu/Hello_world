@@ -1,0 +1,36 @@
+security:
+  basic:
+    enabled: false   #添加eureka的登录认证
+spring:
+  application:
+    name: microservice-config-server
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      label: master
+      server:
+        git:
+          uri: https://github.com/zzulicaiqu/ENN.git
+          search-paths: ENN
+          username: zzuilcaiqu
+          password: github123.
+server:
+  port: 9091
+  
+eureka:               #erueka 注册中心的健康检查、erueka的路径已经登录的安全检查（security）
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://user:password123@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true   #显示status的ip
+    status-page-url: http://localhost:${server.port}/swagger-ui.html # ${server.port}为该服务的端口号  / 开启swagger2
+
+
+# spring.cloud.config.server.git.uri：配置git仓库地址
+# spring.cloud.config.server.git.searchPaths：配置仓库路径
+# spring.cloud.config.label：配置仓库的分支
+# spring.cloud.config.server.git.username：访问git仓库的用户名
+# spring.cloud.config.server.git.password：访问git仓库的用户密码
